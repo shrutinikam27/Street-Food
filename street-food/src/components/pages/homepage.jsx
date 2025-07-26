@@ -60,7 +60,7 @@ const HomePage = () => {
               {['Features', 'How It Works', 'Dashboard', 'Testimonials'].map((item) => (
                 <a 
                   key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                  href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
                   className="font-medium text-gray-700 hover:text-orange-500 transition-all duration-300 relative group py-2"
                 >
                   {item}
@@ -98,7 +98,7 @@ const HomePage = () => {
           </span>
         </h1>
         <p className="text-gray-600 text-lg lg:text-xl mb-8 max-w-2xl leading-relaxed">
-          StreetVend connects street food vendors with verified suppliers for seamless raw material sourcing. 
+          Vendorverse connects street food vendors with verified suppliers for seamless raw material sourcing. 
           Save time, reduce costs, and focus on creating delicious street food!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -413,7 +413,7 @@ const HomePage = () => {
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center shadow-lg">
                   <FaUtensils className="text-white text-xl" />
                 </div>
-                <span className="text-2xl font-bold text-white">StreetVend</span>
+                <span className="text-2xl font-bold text-white">Vendorverse</span>
               </div>
               <p className="mb-6 max-w-sm leading-relaxed">
                 Empowering India's street food vendors with efficient sourcing solutions since 2023.
@@ -463,7 +463,7 @@ const HomePage = () => {
           </div>
           
           <div className="pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">&copy; 2023 StreetVend. All rights reserved. Designed with ❤️ for India's street food vendors.</p>
+            <p className="text-gray-400">&copy; 2023 Vendorverse. All rights reserved. Designed with ❤️ for India's street food vendors.</p>
           </div>
         </div>
       </footer>
