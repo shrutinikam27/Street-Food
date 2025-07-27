@@ -21,9 +21,12 @@ import {
   FaLinkedinIn,
   FaArrowRight
 } from 'react-icons/fa';
+import DeliveryTrackingCard from './DeliveryTrackingCard';
+
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('vendor');
   const [isVisible, setIsVisible] = useState(false);
+  const [showDeliveryTracking, setShowDeliveryTracking] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -128,9 +131,12 @@ const HomePage = () => {
                   alt="Street Food"
                   className="rounded-2xl w-full h-auto shadow-2xl border border-orange-100"
                 />
-
+               
                 {/* Badge Top Left */}
-                <div className="absolute -top-6 -left-6 bg-gradient-to-r from-orange-500 to-orange-600 p-4 rounded-full shadow-xl">
+                <div
+                  className="absolute -top-6 -left-6 bg-gradient-to-r from-orange-500 to-orange-600 p-4 rounded-full shadow-xl cursor-pointer border-2 border-red-600 bg-red-200 bg-opacity-30"
+                  onClick={() => setShowDeliveryTracking(true)}
+                >
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white animate-pulse">
                     <FaTruck className="text-xl" />
                   </div>
@@ -146,8 +152,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
-
 
       {/* Key Features Section - Exactly 3 Features Per Row */}
       <section id="features" className="py-20 md:py-28 bg-white">
@@ -192,6 +196,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      {showDeliveryTracking && <DeliveryTrackingCard onClose={() => setShowDeliveryTracking(false)} />}
 
       {/* How It Works - Horizontal Steps with Arrows */}
       <section id="how-it-works" className="py-20 md:py-28 bg-gradient-to-br from-orange-50 via-white to-orange-50">
@@ -291,63 +296,93 @@ const HomePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
               {activeTab === 'vendor' ? (
                 <>
-                  <DashboardCard
-                    icon={<FaMapMarkerAlt className="text-orange-500 text-xl" />}
-                    title="Nearby Suppliers"
-                    description="Interactive map showing verified suppliers in your area with distance and ratings."
-                  />
-                  <DashboardCard
-                    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
-                    title="Order Management"
-                    description="View current, past, and upcoming orders with detailed status tracking."
-                  />
-                  <DashboardCard
-                    icon={<FaChartLine className="text-orange-500 text-xl" />}
-                    title="Price Comparison"
-                    description="Compare prices for ingredients across suppliers with historical trends."
-                  />
-                  <DashboardCard
-                    icon={<FaTruck className="text-orange-500 text-xl" />}
-                    title="Delivery Tracking"
-                    description="Real-time tracking of your orders with live location updates."
-                  />
-                </>
+  <DashboardCard
+    icon={<FaMapMarkerAlt className="text-orange-500 text-xl" />}
+    title="Nearby Suppliers"
+    description="Interactive map showing verified suppliers in your area with distance and ratings."
+  />
+  <DashboardCard
+    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
+    title="Order Management"
+    description="View current, past, and upcoming orders with detailed status tracking."
+  />
+  <DashboardCard
+    icon={<FaChartLine className="text-orange-500 text-xl" />}
+    title="Price Comparison"
+    description="Compare prices for ingredients across suppliers with historical trends."
+  />
+  <DashboardCard
+    icon={<FaTruck className="text-orange-500 text-xl" />}
+    title="Delivery Tracking"
+    description="Real-time tracking of your orders with live location updates."
+  />
+
+  {/* Visual Dashboard Preview Area */}
+  <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full min-h-96 p-6">
+    <div className="text-center">
+      <div className="flex justify-center items-center min-h-64">
+        <img
+          src="public/images/dash.png"
+          alt="Vendor Dashboard Preview"
+          className="rounded-xl shadow-md max-h-64 w-auto object-contain"
+        />
+      </div>
+      <h3 className="text-2xl font-bold text-gray-800 mt-4 mb-2">Interactive Dashboard Preview</h3>
+      <p className="text-gray-600 font-medium">Experience the full power of our {activeTab} dashboard</p>
+    </div>
+  </div>
+</>
+
+                
               ) : (
                 <>
-                  <DashboardCard
-                    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
-                    title="Order Management"
-                    description="View and manage all incoming orders with automated processing tools."
-                  />
-                  <DashboardCard
-                    icon={<FaClipboardList className="text-orange-500 text-xl" />}
-                    title="Inventory Management"
-                    description="Track your stock levels in real-time with automated reorder alerts."
-                  />
-                  <DashboardCard
-                    icon={<FaChartLine className="text-orange-500 text-xl" />}
-                    title="Sales Analytics"
-                    description="Detailed analytics on sales performance with profit margin insights."
-                  />
-                  <DashboardCard
-                    icon={<FaUsers className="text-orange-500 text-xl" />}
-                    title="Vendor Management"
-                    description="Manage relationships with vendors and track their order history."
-                  />
-                </>
+  <DashboardCard
+    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
+    title="Order Management"
+    description="View and manage all incoming orders with automated processing tools."
+  />
+  <DashboardCard
+    icon={<FaClipboardList className="text-orange-500 text-xl" />}
+    title="Inventory Management"
+    description="Track your stock levels in real-time with automated reorder alerts."
+  />
+  <DashboardCard
+    icon={<FaChartLine className="text-orange-500 text-xl" />}
+    title="Sales Analytics"
+    description="Detailed analytics on sales performance with profit margin insights."
+  />
+  <DashboardCard
+    icon={<FaUsers className="text-orange-500 text-xl" />}
+    title="Vendor Management"
+    description="Manage relationships with vendors and track their order history."
+  />
+
+  {/* Visual Dashboard Preview Area */}
+  <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full min-h-96 p-6">
+    <div className="text-center">
+      {/* Center image only */}
+      <div className="flex items-center justify-center min-h-64">
+        <img
+          src="/images/sup.png"
+          alt="Vendor Dashboard Preview"
+          className="rounded-xl shadow-md max-h-64 w-auto object-contain"
+        />
+      </div>
+      {/* Headings stay as-is */}
+      <h3 className="text-2xl font-bold text-gray-800 mt-4 mb-2">Interactive Dashboard Preview</h3>
+      <p className="text-gray-600 font-medium">
+        Experience the full power of our {activeTab} dashboard
+      </p>
+    </div>
+  </div>
+</>
+
               )}
             </div>
 
-            {/* Visual Dashboard Preview Area */}
-            <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full h-80 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-orange-500 text-6xl mb-6 animate-bounce">
-                  <FaChartLine />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Interactive Dashboard Preview</h3>
-                <p className="text-gray-600 font-medium">Experience the full power of our {activeTab} dashboard</p>
-              </div>
-            </div>
+           
+
+
           </div>
         </div>
       </section >
@@ -358,7 +393,7 @@ const HomePage = () => {
         <div className="relative z-10 container mx-auto px-4">
           <SectionTitle
             title="Success Stories"
-            subtitle="Hear from vendors and suppliers who transformed their business with StreetVend"
+            subtitle="Hear from vendors and suppliers who transformed their business with Vendorverse"
             light
           />
 
@@ -367,7 +402,7 @@ const HomePage = () => {
               name="Rajesh Kumar"
               role="Pani Puri Vendor, Delhi"
               rating={5}
-              text="StreetVend has completely changed how I source ingredients. I used to spend 3 hours every morning visiting markets. Now I place orders at night and get everything delivered fresh by 6 AM. The group order feature helped me save 20% on potatoes and onions!"
+              text="Vendorverse has completely changed how I source ingredients. I used to spend 3 hours every morning visiting markets. Now I place orders at night and get everything delivered fresh by 6 AM. The group order feature helped me save 20% on potatoes and onions!"
               icon={<FaUser />}
               color="bg-orange-100"
               iconColor="text-orange-500"
@@ -377,7 +412,7 @@ const HomePage = () => {
               name="Priya Agro Products"
               role="Verified Supplier, Mumbai"
               rating={4.5}
-              text="As a supplier, StreetVend has given us access to hundreds of loyal customers we could never reach before. The platform handles order management and payments, so we can focus on quality and delivery."
+              text="As a supplier, Vendorverse has given us access to hundreds of loyal customers we could never reach before. The platform handles order management and payments, so we can focus on quality and delivery."
               icon={<FaBuilding />}
               color="bg-green-100"
               iconColor="text-green-500"
@@ -396,7 +431,7 @@ const HomePage = () => {
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Sourcing?</h2>
           <p className="text-orange-100 max-w-3xl mx-auto mb-12 text-xl leading-relaxed">
-            Join thousands of vendors and suppliers who are saving time and money with StreetVend
+            Join thousands of vendors and suppliers who are saving time and money with Vendorverse
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <button className="px-10 py-4 bg-white text-orange-500 rounded-lg hover:bg-gray-100 transition-all duration-300 font-medium text-lg transform hover:scale-105 shadow-xl">
