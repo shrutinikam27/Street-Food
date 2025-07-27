@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaTruck, FaClipboardList, FaChartLine, FaUsers, FaBox, FaRupeeSign, FaSearch, FaFilter, FaPlus, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle, FaChevronDown, FaArrowRight } from 'react-icons/fa';
 
 const SupplierDashboard = () => {
@@ -319,7 +320,10 @@ const OrdersTab = ({ orders }) => {
                         <FaChevronDown className="absolute right-3 top-3 text-gray-500 pointer-events-none" />
                     </div>
 
-                    <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <button
+                        onClick={() => navigate('/create-order')}
+                        className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+                    >
                         <FaPlus /> Create Order
                     </button>
                 </div>
