@@ -88,17 +88,49 @@ const CreateOrderPage = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would typically send the order data to your backend
-        alert(`Order created successfully!\nTotal Amount: ₹${totalAmount.toLocaleString()}`);
-        // Reset form after submission
-        setItems([{ id: 1, product: '', quantity: 1, price: 0, total: 0 }]);
-        setVendor('');
-        setOrderDate('');
-        setDeliveryDate('');
-        setNotes('');
-        setStatus('pending');
+        // Prepare order data
+        const orderData = {
+            vendor,
+            orderDate,
+            deliveryDate,
+            notes,
+            status,
+            items: items.map(item => ({
+                product: item.product,
+                quantity: item.quantity,
+                price: item.price,
+                total: item.total
+            })),
+            totalAmount
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            });
+
+            if (response.ok) {
+                alert(`Order created successfully!\nTotal Amount: ₹${totalAmount.toLocaleString()}`);
+                // Reset form after submission
+                setItems([{ id: 1, product: '', quantity: 1, price: 0, total: 0 }]);
+                setVendor('');
+                setOrderDate('');
+                setDeliveryDate('');
+                setNotes('');
+                setStatus('pending');
+            } else {
+                const errorData = await response.json();
+                alert(`Failed to create order: ${errorData.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            alert(`Error creating order: ${error.message}`);
+        }
     };
 
     return (

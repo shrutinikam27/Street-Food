@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaTruck, FaClipboardList, FaChartLine, FaUsers, FaBox, FaRupeeSign, FaSearch, FaFilter, FaPlus, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle, FaChevronDown, FaArrowRight } from 'react-icons/fa';
 
 const SupplierDashboard = () => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('dashboard');
     const [orders, setOrders] = useState([]);
     const [products, setProducts] = useState([]);
@@ -13,42 +14,37 @@ const SupplierDashboard = () => {
         revenue: 0
     });
 
-    // Initialize with mock data
+    // Initialize with real data from backend
     useEffect(() => {
-        // Mock orders data
-        const mockOrders = [
-            { id: 1, vendor: 'Rajesh Kumar', items: 5, amount: 4250, status: 'pending', date: '2023-06-15' },
-            { id: 2, vendor: 'Priya Foods', items: 3, amount: 2850, status: 'completed', date: '2023-06-14' },
-            { id: 3, vendor: 'Mumbai Chaat Corner', items: 8, amount: 7200, status: 'pending', date: '2023-06-14' },
-            { id: 4, vendor: 'Delhi Street Foods', items: 4, amount: 3800, status: 'completed', date: '2023-06-13' },
-            { id: 5, vendor: 'Chennai Snacks', items: 6, amount: 5400, status: 'completed', date: '2023-06-12' },
-            { id: 6, vendor: 'Kolkata Sweets', items: 7, amount: 6100, status: 'pending', date: '2023-06-11' },
-        ];
+        const fetchData = async () => {
+            try {
+                const ordersRes = await fetch('http://localhost:3000/orders');
+                const ordersData = await ordersRes.json();
+                const productsRes = await fetch('http://localhost:3000');
+                const productsData = await productsRes.json();
 
-        // Mock products data
-        const mockProducts = [
-            { id: 1, name: 'Potatoes (1kg)', category: 'Vegetables', stock: 150, price: 25 },
-            { id: 2, name: 'Onions (1kg)', category: 'Vegetables', stock: 200, price: 30 },
-            { id: 3, name: 'Cooking Oil (1L)', category: 'Oils', stock: 80, price: 180 },
-            { id: 4, name: 'Wheat Flour (5kg)', category: 'Flours', stock: 60, price: 220 },
-            { id: 5, name: 'Sugar (1kg)', category: 'Sweets', stock: 120, price: 45 },
-            { id: 6, name: 'Paneer (250g)', category: 'Dairy', stock: 90, price: 80 },
-        ];
+                const orders = ordersData.orders;
+                const products = productsData.items;
 
-        // Calculate stats
-        const totalOrders = mockOrders.length;
-        const pendingOrders = mockOrders.filter(order => order.status === 'pending').length;
-        const completedOrders = mockOrders.filter(order => order.status === 'completed').length;
-        const revenue = mockOrders.reduce((sum, order) => order.status === 'completed' ? sum + order.amount : sum, 0);
+                // Calculate stats
+                const totalOrders = orders.length;
+                const pendingOrders = orders.filter(order => order.status === 'pending').length;
+                const completedOrders = orders.filter(order => order.status === 'completed').length;
+                const revenue = orders.reduce((sum, order) => order.status === 'completed' ? sum + order.amount : sum, 0);
 
-        setOrders(mockOrders);
-        setProducts(mockProducts);
-        setStats({
-            totalOrders,
-            pendingOrders,
-            completedOrders,
-            revenue
-        });
+                setOrders(orders);
+                setProducts(products);
+                setStats({
+                    totalOrders,
+                    pendingOrders,
+                    completedOrders,
+                    revenue
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
     }, []);
 
     return (
