@@ -317,7 +317,7 @@ const OrdersTab = ({ orders }) => {
                     </div>
 
                     <button
-                        onClick={() => navigate('/create-order')}
+                        onClick={() => navigate('/createorder')}
                         className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
                     >
                         <FaPlus /> Create Order
