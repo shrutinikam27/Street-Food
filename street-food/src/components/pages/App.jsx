@@ -1,4 +1,4 @@
-// src/App.jsx
+import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
