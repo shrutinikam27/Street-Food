@@ -7,6 +7,7 @@ import Homepage from './components/pages/homepage.jsx'
 import FindSuppliers from './components/pages/FindSupplier.jsx';
 import BecomeSupplier from './components/pages/BecomeSupplier.jsx';
 import VendorDashboard from './components/pages/VendorDashboard.jsx';
+import SupplierDashboard from './components/pages/SupplierDashboard.jsx';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -17,6 +18,8 @@ function App() {
         <Route path="/find-suppliers" element={<FindSuppliers />} />
         <Route path="/become-supplier" element={<BecomeSupplier />} />
         <Route path="/vendor-dashboard" element={<VendorDashboard />} />
+        <Route path="/supplier-dashboard" element={<SupplierDashboard />} />
+
       </Routes>
     </BrowserRouter>
   )
