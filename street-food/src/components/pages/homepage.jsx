@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  FaUtensils, 
-  FaMapMarkerAlt, 
-  FaBalanceScale, 
-  FaUsers, 
-  FaTruck, 
-  FaClipboardList, 
+import {
+  FaUtensils,
+  FaMapMarkerAlt,
+  FaBalanceScale,
+  FaUsers,
+  FaTruck,
+  FaClipboardList,
   FaRupeeSign,
   FaMap,
   FaShoppingCart,
@@ -27,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     const handleScroll = () => {
       const elements = document.querySelectorAll('.scroll-animate');
       elements.forEach(el => {
@@ -40,7 +40,7 @@ const HomePage = () => {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -58,9 +58,9 @@ const HomePage = () => {
             </div>
             <div className="hidden md:flex gap-8">
               {['Features', 'How It Works', 'Dashboard', 'Testimonials'].map((item) => (
-                <a 
+                <a
                   key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                  href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                   className="font-medium text-gray-700 hover:text-orange-500 transition-all duration-300 relative group py-2"
                 >
                   {item}
@@ -80,107 +80,111 @@ const HomePage = () => {
         </div>
       </header>
 
-     <section className="relative py-20 md:py-28 overflow-hidden bg-[#fffdf8]">
-  {/* Background blobs */}
-  <div className="absolute top-20 right-10 w-72 h-72 bg-orange-500 rounded-full filter blur-3xl opacity-15 animate-pulse z-0"></div>
-  <div className="absolute bottom-10 left-10 w-96 h-96 bg-green-500 rounded-full filter blur-3xl opacity-15 animate-pulse z-0"></div>
+      <section className="relative py-20 md:py-28 overflow-hidden bg-[#fffdf8]">
+        {/* Background blobs */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-orange-500 rounded-full filter blur-3xl opacity-15 animate-pulse z-0"></div>
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-green-500 rounded-full filter blur-3xl opacity-15 animate-pulse z-0"></div>
 
-  <div className="container mx-auto px-4 relative z-10">
-    {/* Force side-by-side on medium screens and above */}
-    <div className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20">
-      
-      {/* TEXT LEFT */}
-      <div className="w-full md:w-1/2">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Empowering India's{' '}
-          <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-            Street Food Vendors
-          </span>
-        </h1>
-        <p className="text-gray-600 text-lg lg:text-xl mb-8 max-w-2xl leading-relaxed">
-          Vendorverse connects street food vendors with verified suppliers for seamless raw material sourcing. 
-          Save time, reduce costs, and focus on creating delicious street food!
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-12">
-          <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl font-medium text-lg">
-            Find Suppliers
-          </button>
-          <button className="px-8 py-4 border-2 border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 transform hover:scale-105 font-medium text-lg">
-            Become a Supplier
-          </button>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <StatItem value="1,250+" label="Vendors Connected" />
-          <StatItem value="420+" label="Verified Suppliers" />
-          <StatItem value="₹85L+" label="Monthly Orders" />
-        </div>
-      </div>
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Force side-by-side on medium screens and above */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20">
 
-      {/* IMAGE RIGHT */}
-      <div className="w-full md:w-1/2 flex justify-center relative">
-        <div className="relative max-w-lg w-full">
-          <img
-            src="https://media.istockphoto.com/id/1329213718/photo/vada-pav.jpg?s=612x612&w=0&k=20&c=Yy3pm53KrPAnZXL9weCJDzXjxa2My34oVFx7RBCPmZ8="
-            alt="Street Food"
-            className="rounded-2xl w-full h-auto shadow-2xl border border-orange-100"
-          />
+            {/* TEXT LEFT */}
+            <div className="w-full md:w-1/2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                Empowering India's{' '}
+                <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  Street Food Vendors
+                </span>
+              </h1>
+              <p className="text-gray-600 text-lg lg:text-xl mb-8 max-w-2xl leading-relaxed">
+                Vendorverse connects street food vendors with verified suppliers for seamless raw material sourcing.
+                Save time, reduce costs, and focus on creating delicious street food!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <Link to="/find-suppliers">
+                  <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl font-medium text-lg">
+                    Find Suppliers
+                  </button>
+                </Link>
+                <Link to="/become-supplier">
+                  <button className="px-8 py-4 border-2 border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 transform hover:scale-105 font-medium text-lg">
+                    Become a Supplier
+                  </button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <StatItem value="1,250+" label="Vendors Connected" />
+                <StatItem value="420+" label="Verified Suppliers" />
+                <StatItem value="₹85L+" label="Monthly Orders" />
+              </div>
+            </div>
 
-          {/* Badge Top Left */}
-          <div className="absolute -top-6 -left-6 bg-gradient-to-r from-orange-500 to-orange-600 p-4 rounded-full shadow-xl">
-            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white animate-pulse">
-              <FaTruck className="text-xl" />
+            {/* IMAGE RIGHT */}
+            <div className="w-full md:w-1/2 flex justify-center relative">
+              <div className="relative max-w-lg w-full">
+                <img
+                  src="https://media.istockphoto.com/id/1329213718/photo/vada-pav.jpg?s=612x612&w=0&k=20&c=Yy3pm53KrPAnZXL9weCJDzXjxa2My34oVFx7RBCPmZ8="
+                  alt="Street Food"
+                  className="rounded-2xl w-full h-auto shadow-2xl border border-orange-100"
+                />
+
+                {/* Badge Top Left */}
+                <div className="absolute -top-6 -left-6 bg-gradient-to-r from-orange-500 to-orange-600 p-4 rounded-full shadow-xl">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white animate-pulse">
+                    <FaTruck className="text-xl" />
+                  </div>
+                </div>
+
+                {/* Bottom Label */}
+                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl border border-orange-100 transform rotate-3 hover:rotate-0 transition-all duration-300">
+                  <div className="text-sm text-gray-500">Mumbai Vendor</div>
+                  <div className="font-bold text-orange-500 text-lg">Saved ₹12,500/month</div>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Bottom Label */}
-          <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl border border-orange-100 transform rotate-3 hover:rotate-0 transition-all duration-300">
-            <div className="text-sm text-gray-500">Mumbai Vendor</div>
-            <div className="font-bold text-orange-500 text-lg">Saved ₹12,500/month</div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
       {/* Key Features Section - Exactly 3 Features Per Row */}
       <section id="features" className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4">
-          <SectionTitle 
+          <SectionTitle
             title="Key Features"
             subtitle="Everything street food vendors need to source quality ingredients efficiently"
           />
-          
+
           {/* Exactly 3 features per row in desktop, responsive on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <FeatureCard 
+            <FeatureCard
               icon={<FaMapMarkerAlt className="text-3xl text-orange-500" />}
               title="Find Verified Suppliers"
               description="Search for trusted suppliers near you with ratings and reviews from other vendors."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<FaBalanceScale className="text-3xl text-orange-500" />}
               title="Compare Prices"
               description="Easily compare prices across multiple suppliers for the same product in real-time."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<FaUsers className="text-3xl text-orange-500" />}
               title="Group Orders"
               description="Join forces with other vendors to place bulk orders and unlock exclusive discounts."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<FaTruck className="text-3xl text-orange-500" />}
               title="Real-time Delivery Tracking"
               description="Track your orders with live updates and accurate estimated arrival times."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<FaClipboardList className="text-3xl text-orange-500" />}
               title="Inventory Management"
               description="Keep track of stock levels and get automated reorder alerts before you run out."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<FaRupeeSign className="text-3xl text-orange-500" />}
               title="Flexible Payments"
               description="Multiple payment options including COD, UPI, and flexible credit terms."
@@ -192,15 +196,15 @@ const HomePage = () => {
       {/* How It Works - Horizontal Steps with Arrows */}
       <section id="how-it-works" className="py-20 md:py-28 bg-gradient-to-br from-orange-50 via-white to-orange-50">
         <div className="container mx-auto px-4">
-          <SectionTitle 
+          <SectionTitle
             title="How It Works"
             subtitle="Simple steps to transform your raw material sourcing experience"
           />
-          
+
           {/* Horizontal steps with arrows on desktop, vertical on mobile */}
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-              <StepCard 
+              <StepCard
                 number="1"
                 title="Create Profile"
                 description="Sign up as a vendor or supplier with your business details and get verified quickly."
@@ -211,8 +215,8 @@ const HomePage = () => {
               <div className="text-orange-500 text-4xl animate-pulse transform rotate-90 lg:hidden">
                 <FaArrowRight />
               </div>
-              
-              <StepCard 
+
+              <StepCard
                 number="2"
                 title="Search & Connect"
                 description="Find suppliers nearby or manage your product catalog with easy-to-use tools."
@@ -223,8 +227,8 @@ const HomePage = () => {
               <div className="text-orange-500 text-4xl animate-pulse transform rotate-90 lg:hidden">
                 <FaArrowRight />
               </div>
-              
-              <StepCard 
+
+              <StepCard
                 number="3"
                 title="Place Orders"
                 description="Place individual or group orders with instant notifications and confirmations."
@@ -235,8 +239,8 @@ const HomePage = () => {
               <div className="text-orange-500 text-4xl animate-pulse transform rotate-90 lg:hidden">
                 <FaArrowRight />
               </div>
-              
-              <StepCard 
+
+              <StepCard
                 number="4"
                 title="Track & Receive"
                 description="Track deliveries in real-time and receive fresh, quality ingredients on time."
@@ -249,58 +253,56 @@ const HomePage = () => {
       {/* Dashboard Section - Clear Tabs and Visual Preview */}
       <section id="dashboard" className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4">
-          <SectionTitle 
+          <SectionTitle
             title="Interactive Dashboard"
             subtitle="Experience our powerful vendor and supplier management dashboards"
           />
-          
+
           {/* Tab Interface */}
           <div className="flex justify-center mb-12">
             <div className="inline-flex bg-gradient-to-r from-orange-100 to-orange-50 p-2 rounded-2xl shadow-lg border border-orange-200">
-              <button 
-                className={`px-8 py-4 rounded-xl transition-all duration-300 font-medium ${
-                  activeTab === 'vendor' 
-                    ? 'bg-white text-orange-500 shadow-lg transform scale-105' 
-                    : 'text-gray-600 hover:text-orange-500 hover:bg-white/50'
-                }`}
+              <button
+                className={`px-8 py-4 rounded-xl transition-all duration-300 font-medium ${activeTab === 'vendor'
+                  ? 'bg-white text-orange-500 shadow-lg transform scale-105'
+                  : 'text-gray-600 hover:text-orange-500 hover:bg-white/50'
+                  }`}
                 onClick={() => setActiveTab('vendor')}
               >
                 Vendor Dashboard
               </button>
-              <button 
-                className={`px-8 py-4 rounded-xl transition-all duration-300 font-medium ${
-                  activeTab === 'supplier' 
-                    ? 'bg-white text-orange-500 shadow-lg transform scale-105' 
-                    : 'text-gray-600 hover:text-orange-500 hover:bg-white/50'
-                }`}
+              <button
+                className={`px-8 py-4 rounded-xl transition-all duration-300 font-medium ${activeTab === 'supplier'
+                  ? 'bg-white text-orange-500 shadow-lg transform scale-105'
+                  : 'text-gray-600 hover:text-orange-500 hover:bg-white/50'
+                  }`}
                 onClick={() => setActiveTab('supplier')}
               >
                 Supplier Dashboard
               </button>
             </div>
           </div>
-          
+
           {/* Dashboard Preview */}
           <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 shadow-xl border border-orange-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
               {activeTab === 'vendor' ? (
                 <>
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaMap className="text-orange-500 text-xl" />}
                     title="Nearby Suppliers"
                     description="Interactive map showing verified suppliers in your area with distance and ratings."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaShoppingCart className="text-orange-500 text-xl" />}
                     title="Order Management"
                     description="View current, past, and upcoming orders with detailed status tracking."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaChartLine className="text-orange-500 text-xl" />}
                     title="Price Comparison"
                     description="Compare prices for ingredients across suppliers with historical trends."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaTruck className="text-orange-500 text-xl" />}
                     title="Delivery Tracking"
                     description="Real-time tracking of your orders with live location updates."
@@ -308,22 +310,22 @@ const HomePage = () => {
                 </>
               ) : (
                 <>
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaShoppingCart className="text-orange-500 text-xl" />}
                     title="Order Management"
                     description="View and manage all incoming orders with automated processing tools."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaClipboardList className="text-orange-500 text-xl" />}
                     title="Inventory Management"
                     description="Track your stock levels in real-time with automated reorder alerts."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaChartLine className="text-orange-500 text-xl" />}
                     title="Sales Analytics"
                     description="Detailed analytics on sales performance with profit margin insights."
                   />
-                  <DashboardCard 
+                  <DashboardCard
                     icon={<FaUsers className="text-orange-500 text-xl" />}
                     title="Vendor Management"
                     description="Manage relationships with vendors and track their order history."
@@ -331,7 +333,7 @@ const HomePage = () => {
                 </>
               )}
             </div>
-            
+
             {/* Visual Dashboard Preview Area */}
             <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full h-80 flex items-center justify-center">
               <div className="text-center">
@@ -350,14 +352,14 @@ const HomePage = () => {
       <section id="testimonials" className="py-20 md:py-28 bg-gradient-to-r from-gray-900 to-gray-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-900/20 to-orange-800/20"></div>
         <div className="relative z-10 container mx-auto px-4">
-          <SectionTitle 
+          <SectionTitle
             title="Success Stories"
             subtitle="Hear from vendors and suppliers who transformed their business with StreetVend"
             light
           />
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Testimonial 
+            <Testimonial
               name="Rajesh Kumar"
               role="Pani Puri Vendor, Delhi"
               rating={5}
@@ -366,8 +368,8 @@ const HomePage = () => {
               color="bg-orange-100"
               iconColor="text-orange-500"
             />
-            
-            <Testimonial 
+
+            <Testimonial
               name="Priya Agro Products"
               role="Verified Supplier, Mumbai"
               rating={4.5}
@@ -419,49 +421,49 @@ const HomePage = () => {
                 Empowering India's street food vendors with efficient sourcing solutions since 2023.
               </p>
               <div className="flex gap-4">
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300 transform hover:scale-110"
                 >
                   <FaFacebookF />
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300 transform hover:scale-110"
                 >
                   <FaTwitter />
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300 transform hover:scale-110"
                 >
                   <FaInstagram />
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300 transform hover:scale-110"
                 >
                   <FaLinkedinIn />
                 </a>
               </div>
             </div>
-            
-            <FooterColumn 
+
+            <FooterColumn
               title="For Vendors"
               items={['Find Suppliers', 'Place Orders', 'Group Buying', 'Delivery Tracking', 'Vendor Resources']}
             />
-            
-            <FooterColumn 
+
+            <FooterColumn
               title="For Suppliers"
               items={['Register as Supplier', 'Manage Products', 'Order Management', 'Payment Solutions', 'Supplier Resources']}
             />
-            
-            <FooterColumn 
+
+            <FooterColumn
               title="Company"
               items={['About Us', 'Careers', 'Contact Us', 'FAQs', 'Privacy Policy']}
             />
           </div>
-          
+
           <div className="pt-8 border-t border-gray-800 text-center">
             <p className="text-gray-400">&copy; 2023 Vendorverse. All rights reserved. Designed with ❤️ for India's street food vendors.</p>
           </div>
@@ -526,7 +528,7 @@ const DashboardCard = ({ icon, title, description }) => (
 const Testimonial = ({ name, role, rating, text, icon, color, iconColor }) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
-  
+
   return (
     <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
       <div className="flex items-center mb-6">
