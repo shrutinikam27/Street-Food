@@ -17,39 +17,36 @@ const VendorDashboard = () => {
         customerRating: 0
     });
 
-    // Initialize with mock data
+    // Initialize with real data from backend
     useEffect(() => {
-        // Mock orders data
-        const mockOrders = [
-            { id: 1, customer: 'Rahul Sharma', items: 2, amount: 185, status: 'delivered', time: '30 min ago' },
-            { id: 2, customer: 'Priya Patel', items: 3, amount: 240, status: 'preparing', time: '45 min ago' },
-            { id: 3, customer: 'Vikram Singh', items: 1, amount: 65, status: 'pending', time: '1 hour ago' },
-            { id: 4, customer: 'Ananya Reddy', items: 4, amount: 320, status: 'delivered', time: '2 hours ago' },
-            { id: 5, customer: 'Raj Mehta', items: 2, amount: 150, status: 'delivered', time: '3 hours ago' },
-        ];
+        const fetchData = async () => {
+            try {
+                const ordersRes = await fetch('http://localhost:3000/orders');
+                const ordersData = await ordersRes.json();
+                const inventoryRes = await fetch('http://localhost:3000/inventory');
+                const inventoryData = await inventoryRes.json();
 
-        // Mock inventory data
-        const mockInventory = [
-            { id: 1, name: 'Potatoes', stock: 8, unit: 'kg', alert: false },
-            { id: 2, name: 'Onions', stock: 5, unit: 'kg', alert: true },
-            { id: 3, name: 'Cooking Oil', stock: 3, unit: 'liters', alert: false },
-            { id: 4, name: 'Paneer', stock: 2, unit: 'kg', alert: true },
-            { id: 5, name: 'Tomatoes', stock: 10, unit: 'kg', alert: false },
-        ];
+                const orders = ordersData.orders;
+                const inventory = inventoryData.inventory;
 
-        // Calculate stats
-        const dailySales = mockOrders.reduce((sum, order) => order.status === 'delivered' ? sum + order.amount : sum, 0);
-        const pendingOrders = mockOrders.filter(order => order.status !== 'delivered').length;
-        const stockAlerts = mockInventory.filter(item => item.alert).length;
+                // Calculate stats
+                const dailySales = orders.reduce((sum, order) => order.status === 'delivered' ? sum + order.amount : sum, 0);
+                const pendingOrders = orders.filter(order => order.status !== 'delivered').length;
+                const stockAlerts = inventory.filter(item => item.alert).length;
 
-        setOrders(mockOrders);
-        setInventory(mockInventory);
-        setStats({
-            dailySales,
-            pendingOrders,
-            stockAlerts,
-            customerRating: 4.7
-        });
+                setOrders(orders);
+                setInventory(inventory);
+                setStats({
+                    dailySales,
+                    pendingOrders,
+                    stockAlerts,
+                    customerRating: 4.7
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
     }, []);
 
     // Toggle sidebar on mobile
