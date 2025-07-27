@@ -2,13 +2,16 @@
   "name": "street-food",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://shrutinikam27.github.io/Street-Food",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tailwind:build": "tailwindcss -i ./src/index.css -o ./src/tailwind.css"
+    "tailwind:build": "tailwindcss -i ./src/index.css -o ./src/tailwind.css",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -28,7 +31,8 @@
     "globals": "^16.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "gh-pages": "^6.0.0"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",
