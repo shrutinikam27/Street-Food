@@ -336,47 +336,39 @@ const HomePage = () => {
                 
               ) : (
                 <>
-  <DashboardCard
-    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
-    title="Order Management"
-    description="View and manage all incoming orders with automated processing tools."
-  />
-  <DashboardCard
-    icon={<FaClipboardList className="text-orange-500 text-xl" />}
-    title="Inventory Management"
-    description="Track your stock levels in real-time with automated reorder alerts."
-  />
-  <DashboardCard
-    icon={<FaChartLine className="text-orange-500 text-xl" />}
-    title="Sales Analytics"
-    description="Detailed analytics on sales performance with profit margin insights."
-  />
-  <DashboardCard
-    icon={<FaUsers className="text-orange-500 text-xl" />}
-    title="Vendor Management"
-    description="Manage relationships with vendors and track their order history."
-  />
-
-  {/* Visual Dashboard Preview Area */}
-  <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full min-h-96 p-6">
-    <div className="text-center">
-      {/* Center image only */}
-      <div className="flex items-center justify-center min-h-64">
-        <img
-          src="/images/sup.png"
-          alt="Vendor Dashboard Preview"
-          className="rounded-xl shadow-md max-h-64 w-auto object-contain"
-        />
-      </div>
-      {/* Headings stay as-is */}
-      <h3 className="text-2xl font-bold text-gray-800 mt-4 mb-2">Interactive Dashboard Preview</h3>
-      <p className="text-gray-600 font-medium">
-        Experience the full power of our {activeTab} dashboard
-      </p>
-    </div>
+                  <DashboardCard
+                    icon={<FaShoppingCart className="text-orange-500 text-xl" />}
+                    title="Order Management"
+                    description="View and manage all incoming orders with automated processing tools."
+                  />
+                  <DashboardCard
+                    icon={<FaClipboardList className="text-orange-500 text-xl" />}
+                    title="Inventory Management"
+                    description="Track your stock levels in real-time with automated reorder alerts."
+                  />
+                  <DashboardCard
+                    icon={<FaChartLine className="text-orange-500 text-xl" />}
+                    title="Sales Analytics"
+                    description="Detailed analytics on sales performance with profit margin insights."
+                  />
+                  <DashboardCard
+                    icon={<FaUsers className="text-orange-500 text-xl" />}
+                    title="Vendor Management"
+                    description="Manage relationships with vendors and track their order history."
+                  />
+                   {/* Visual Dashboard Preview Area */}
+           <div className="bg-gradient-to-r from-orange-100 via-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl w-full min-h-96 flex items-center justify-center p-6">
+  <div className="text-center">
+    <img
+      src="/images/sup.png"
+      alt="Vendor Dashboard Preview"
+      className="mx-auto rounded-xl shadow-md max-h-64 w-auto object-contain"
+    />
+    <h3 className="text-2xl font-bold text-gray-800 mt-4 mb-2">Interactive Dashboard Preview</h3>
+    <p className="text-gray-600 font-medium">Experience the full power of our {activeTab} dashboard</p>
   </div>
-</>
-
+</div>
+                </>
               )}
             </div>
 
