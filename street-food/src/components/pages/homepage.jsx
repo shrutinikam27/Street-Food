@@ -268,7 +268,7 @@ const HomePage = () => {
                   : 'text-gray-600 hover:text-orange-500 hover:bg-white/50'
                   }`}
                 onClick={() => {
-                  navigate("/vendor-dashboard");
+                  setActiveTab("vendor");
                 }}
               >
                 Vendor Dashboard
